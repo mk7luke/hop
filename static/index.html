@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Hop: where does this link go?</title>
+  <meta name="description" content="Paste a link. See each redirect, then copy the final address with tracking tags removed." />
+  <meta name="theme-color" content="#100e0c" />
+  <meta name="color-scheme" content="dark" />
+  <link rel="canonical" href="https://hop.hermz.xyz/" />
+  <link rel="icon" type="image/svg+xml" href="/static/brand/logo.svg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Hop: where does this link go?" />
+  <meta property="og:description" content="Each redirect, then a clean final address." />
+  <meta property="og:url" content="https://hop.hermz.xyz/" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <div class="page">
+    <header class="nav">
+      <a class="nav-brand" href="/" aria-label="Hop home">
+        <img src="/static/brand/logo.svg" width="28" height="28" alt="" />
+        <span>Hop</span>
+      </a>
+      <details class="nav-menu">
+        <summary class="btn ghost sm nav-menu-btn" aria-label="Menu">Menu</summary>
+        <div class="nav-menu-panel">
+          <a href="#how">How</a>
+          <a href="#limits">Limits</a>
+          <a href="#curl">curl</a>
+        </div>
+      </details>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <p class="eyebrow">One link. Every hop.</p>
+        <h1>Where does this link actually go?</h1>
+        <p class="lede">Paste a URL. Hop follows each redirect, then gives you the final address with tracking tags removed.</p>
+      </section>
+
+      <form class="cta-card" id="form" action="/" method="get">
+        <label class="field">
+          <span>Link</span>
+          <input class="mono" id="url" name="url" type="text" inputmode="url" enterkeyhint="go" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" placeholder="https://example.com" value="<!--URL-->" />
+        </label>
+        <button type="submit" class="btn primary lg" id="go">Follow it</button>
+        <p class="hint">Works with JavaScript off. Hop does not store the link.</p>
+        <p class="status<!--STATUS_CLASS-->" id="status" role="status"><!--STATUS--></p>
+      </form>
+
+      <div class="presets" id="presets">
+        <a class="chip" href="/?url=https%3A%2F%2Fexample.com%2F%3Futm_source%3Dhop%26fbclid%3Dtest">example.com with tags</a>
+        <a class="chip" href="/?url=https%3A%2F%2Fhttpbin.org%2Fredirect%2F2">Two-hop demo</a>
+      </div>
+
+      <!--RESULT-->
+
+      <section id="how" class="block">
+        <h2>How</h2>
+        <div class="steps">
+          <div class="step"><span class="badge">1</span><p>Paste a full http or https link. A bare host is treated as https.</p></div>
+          <div class="step"><span class="badge">2</span><p>Hop requests each stop and records the status, the host, and the next address.</p></div>
+          <div class="step"><span class="badge">3</span><p>Copy the clean link. Known tracker tags are listed under it. Unknown tags stay.</p></div>
+        </div>
+      </section>
+
+      <section id="limits" class="block">
+        <h2>Limits</h2>
+        <ul class="plain">
+          <li>http and https only, port 80 and 443. No file links, no passwords in the URL.</li>
+          <li>Local, private, and link-local addresses are refused. That includes hosts that resolve there.</li>
+          <li>6 hops. 4 seconds each. 30 checks per IP per hour.</li>
+          <li>Hop does not run page scripts. A meta refresh is shown and not opened.</li>
+          <li>This is not a safety check. Hop does not download the file, and it does not say a link is safe.</li>
+          <li>Links are not stored.</li>
+        </ul>
+      </section>
+
+      <section id="curl" class="block">
+        <h2>curl</h2>
+        <code class="curl">curl -A 'Mozilla/5.0' 'https://hop.hermz.xyz/api/follow?url=https%3A%2F%2Fexample.com%2F%3Futm_source%3Dhop'</code>
+      </section>
+    </main>
+
+    <footer class="foot">
+      <p>hop.hermz.xyz · holy-hermes · MIT</p>
+    </footer>
+  </div>
+  <script src="/static/home.js"></script>
+</body>
+</html>
