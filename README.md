@@ -2,6 +2,9 @@
 
 Paste a link. See each redirect, then copy the final address with tracking tags removed.
 
+Live: https://hop.hermz.xyz
+Source: https://github.com/mk7luke/hop
+
 ## Limits
 
 - http and https only, port 80 and 443
